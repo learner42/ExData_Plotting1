@@ -4,9 +4,8 @@ pwr <-pwr[pwr$Date == "1/2/2007" | pwr$Date == "2/2/2007",]
 pwr$Time <- paste(pwr$Date , pwr$Time)
 pwr$Time <- strptime(pwr$Time, format = "%d/%m/%Y %H:%M:%S")
 pwr$Date <- as.Date(pwr$Date, format = "%d/%m/%Y")
-
+png("plot2.png")
 Sys.setlocale("LC_TIME", "C") # Make sure the correct local is used (for days)
 with(pwr, plot(Time, Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = ""))
-dev.copy(png, "plot2.png")
 dev.off()
 
