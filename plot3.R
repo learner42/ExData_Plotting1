@@ -6,7 +6,10 @@ pwr$Time <- strptime(pwr$Time, format = "%d/%m/%Y %H:%M:%S")
 pwr$Date <- as.Date(pwr$Date, format = "%d/%m/%Y")
 
 Sys.setlocale("LC_TIME", "C") # Make sure the correct local is used (for days)
-with(pwr, plot(Time, Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = ""))
-dev.copy(png, "plot2.png")
+with(pwr, plot(Time, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = ""))
+with(pwr, lines(Time, Sub_metering_2, type = "l", col = "red"))
+with(pwr, lines(Time, Sub_metering_3, type = "l", col = "blue"))
+legend("topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+dev.copy(png, "plot3.png")
 dev.off()
 
